@@ -23,14 +23,14 @@ export const App = () => {
     return moviesList;
   };
 
-  const visibleMovie = preparedMovies(movies, query);
+  const visibleMovies = preparedMovies(movies, query);
 
   return (
     <div className="page">
       <div className="page-content">
         <SearchMovie setQuery={setQuery} />
 
-        <MoviesList movies={visibleMovie} />
+        <MoviesList movies={visibleMovies} />
       </div>
 
       <div className="sidebar">Sidebar goes here</div>
