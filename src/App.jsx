@@ -10,29 +10,27 @@ export const App = () => {
   const [query, setQuery] = useState('');
 
   const preparedMovies = (moviesList, searchQuery) => {
-    if (searchQuery) {
+    const normalizedQuery = searchQuery.trim().toLowerCase();
+
+    if (normalizedQuery) {
       return moviesList.filter(
         movie =>
-          movie.title
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase().trim()) ||
-          movie.description
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase().trim()),
+          movie.title.toLowerCase().includes(normalizedQuery) ||
+          movie.description.toLowerCase().includes(normalizedQuery),
       );
     }
 
     return moviesList;
   };
 
-  const visbleMovie = preparedMovies(movies, query);
+  const visibleMovie = preparedMovies(movies, query);
 
   return (
     <div className="page">
       <div className="page-content">
         <SearchMovie setQuery={setQuery} />
 
-        <MoviesList movies={visbleMovie} />
+        <MoviesList movies={visibleMovie} />
       </div>
 
       <div className="sidebar">Sidebar goes here</div>
